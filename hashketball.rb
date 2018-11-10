@@ -76,9 +76,9 @@ end
 
 def player_stats(player_name)
   game_hash.each do |location, team_info|
-    team_info[:players].each do |name, statistic|
+    team_info[:players].each do |name, statistics|
       if name == player_name
-        return team_info[:players][player_name]
+        return statistics
       end
     end
   end
@@ -110,20 +110,6 @@ def most_points_scored
     end
   end
   mvp
-  # all_points_scored = []
-  # game_hash.each do |location, team_info|
-  # team_info[:players].each do |name, statistics|
-  #     all_points_scored << team_info[:players][name][:points]
-  #   end
-  # end
-  # most_points = all_points_scored.sort.last
-  # game_hash.each do |location, team_info|
-  #   team_info[:players].each do |name, statistics|
-  #     if team_info[:players][name][:points] == most_points
-  #       return name
-  #     end
-  #   end
-  # end
 end
 
 def winning_team
