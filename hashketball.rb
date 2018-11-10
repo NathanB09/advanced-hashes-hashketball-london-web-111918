@@ -130,25 +130,37 @@ end
 def player_with_longest_name
   all_players = []
   game_hash.each do |location, team_info|
-    team_info[:players].collect {|name, statistics| name}.sort_by {|name| name.length}.last
+    team_info[:players].collect {|name, statistics| name}
   end
   all_players.sort_by {|name| name.length}.last
 end
 
 def long_name_steals_a_ton?
-  all_steals = []
+  player_steals = 0
+  player_name = ""
   game_hash.each do |location, team_info|
     team_info[:players].each do |name, statistics|
-    all_steals << team_info[:players][name][:steals]
-    end
-  end
-  most_steals = all_steals.sort.last
-  game_hash.each do |location, team_info|
-    team_info[:players].each do |name, statistics|
-      if team_info[:players][name][:steals] == most_steals
-        most_steals = name
+      if statistics[:steals] > player_steals
+        player_steals = statistics[:steals]
+        player_name = name
       end
     end
   end
-  player_with_longest_name == most_steals ? true : false
+
+  player_with_longest_name == player_name ? true : false
+  # all_steals = []
+  # game_hash.each do |location, team_info|
+  #   team_info[:players].each do |name, statistics|
+  #   all_steals << team_info[:players][name][:steals]
+  #   end
+  # end
+  # most_steals = all_steals.sort.last
+  # game_hash.each do |location, team_info|
+  #   team_info[:players].each do |name, statistics|
+  #     if team_info[:players][name][:steals] == most_steals
+  #       most_steals = name
+  #     end
+  #   end
+  # end
+  # player_with_longest_name == most_steals ? true : false
 end
