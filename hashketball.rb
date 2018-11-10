@@ -87,9 +87,8 @@ def big_shoe_rebounds
   num_rebounds = 0
   game_hash.each do |location, team_info|
     team_info[:players].each do |name, statistic|
-      binding.pry
       if statistic[:shoe] > shoe_size
-        shoe_size = statistic
+        shoe_size = statistic[:shoe]
         num_rebounds = statistic[:rebounds]
       end
     end
@@ -110,7 +109,6 @@ def big_shoe_rebounds
   #   end
   # end
 end
-big_shoe_rebounds
 
 def most_points_scored
   all_points_scored = []
