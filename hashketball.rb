@@ -128,9 +128,11 @@ def winning_team
 end
 
 def player_with_longest_name
+  all_players = []
   game_hash.each do |location, team_info|
-    return team_info[:players].collect {|name, statistics| name}.sort_by {|sort_name| sort_name.length}.last
+    team_info[:players].collect {|name, statistics| name}.sort_by {|name| name.length}.last
   end
+  all_players.sort_by {|name| name.length}.last
 end
 
 def long_name_steals_a_ton?
