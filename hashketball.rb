@@ -74,7 +74,7 @@ end
 
 def player_stats(player_name)
   game_hash.each do |location, team_info|
-    team_info[:players].each do |name, statistics|
+    team_info[:players].each do |name, statistic|
       if name == player_name
         return team_info[:players][player_name]
       end
@@ -83,20 +83,31 @@ def player_stats(player_name)
 end
 
 def big_shoe_rebounds
-  shoe_sizes = []
+  shoe_size = 0
+  num_rebounds = 0
   game_hash.each do |location, team_info|
-    team_info[:players].each do |name, statistics|
-      shoe_sizes << team_info[:players][name][:shoe]
-    end
-  end
-  biggest_shoe = shoe_sizes.sort.last
-  game_hash.each do |location, team_info|
-    team_info[:players].each do |name, statistics|
-      if team_info[:players][name][:shoe] == biggest_shoe
-        return team_info[:players][name][:rebounds]
+    team_info[:players].each do |name, statistic|
+      if statistic > shoe_size
+        shoe_size = statistic
+        num_rebounds = statistic[:rebounds]
       end
     end
   end
+
+  # shoe_sizes = []
+  # game_hash.each do |location, team_info|
+  #   team_info[:players].each do |name, statistics|
+  #     shoe_sizes << team_info[:players][name][:shoe]
+  #   end
+  # end
+  # biggest_shoe = shoe_sizes.sort.last
+  # game_hash.each do |location, team_info|
+  #   team_info[:players].each do |name, statistics|
+  #     if team_info[:players][name][:shoe] == biggest_shoe
+  #       return team_info[:players][name][:rebounds]
+  #     end
+  #   end
+  # end
 end
 
 def most_points_scored
