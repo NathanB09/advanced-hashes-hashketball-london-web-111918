@@ -66,8 +66,8 @@ def player_numbers(team)
   numbers = []
   game_hash.each do |location, team_info|
     if team_info[:team_name] == team
-      team_info[:players].each do |name, statistics|
-        numbers << team_info[:players][name][:number]
+      team_info[:players].each do |name, statistic|
+        numbers << statistic[:number]
       end
     end
   end
@@ -99,20 +99,14 @@ def big_shoe_rebounds
 end
 
 def most_points_scored
-  points_scored = []
+  points_scored = 0
+  mvp = ""
   game_hash.each do |location, team_info|
-  team_info[:players].each do |name, statistics|
-      all_points_scored << team_info[:players][name][:points]
+    team_info[:players].each do |name, statistic|
+      if 
     end
   end
-  most_points = all_points_scored.sort.last
-  game_hash.each do |location, team_info|
-    team_info[:players].each do |name, statistics|
-      if team_info[:players][name][:points] == most_points
-        return name
-      end
-    end
-  end
+  mvp
   # all_points_scored = []
   # game_hash.each do |location, team_info|
   # team_info[:players].each do |name, statistics|
