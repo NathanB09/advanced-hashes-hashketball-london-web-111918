@@ -89,7 +89,7 @@ def big_shoe_rebounds
   num_rebounds = 0
   game_hash.each do |location, team_info|
     team_info[:players].each do |name, statistics|
-      if statistic[:shoe] > shoe_size
+      if statistics[:shoe] > shoe_size
         shoe_size = statistics[:shoe]
         num_rebounds = statistics[:rebounds]
       end
@@ -102,9 +102,9 @@ def most_points_scored
   points_scored = 0
   mvp = ""
   game_hash.each do |location, team_info|
-    team_info[:players].each do |name, statistic|
-      if statistic[:points] > points_scored
-        points_scored = statistic[:points]
+    team_info[:players].each do |name, statistics|
+      if statistics[:points] > points_scored
+        points_scored = statistics[:points]
         mvp = name
       end
     end
